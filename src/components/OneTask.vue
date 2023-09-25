@@ -1,0 +1,122 @@
+<template>
+  <li class="flex text-xl">
+    <!-- <q-item-section> -->
+    <q-icon
+      :name="returnIconNameFromStatus(currentTask.completed)"
+      type="checkbox"
+      v-model="currentTask"
+      @click="toggleStatus()"
+      data-te-toggle="tooltip"
+      data-te-placement="bottom"
+      data-te-ripple-init
+      data-te-ripple-color="light"
+      title="Filter my todos"
+    />
+  </li>
+  <li class="text-left text-ml">
+    <input
+      type="text"
+      :readonly="!editMode"
+      v-model="currentTask.title"
+      v-on:keyup.enter="updateLabel()"
+      class="px-2"
+      :class="{
+        'bg-sky-50': !editMode,
+        'line-through': currentTask.completed,
+      }"
+    />
+  </li>
+  <!-- edit btn -->
+  <li v-if="!editMode" class="self-center rounded border border-sky-400 mx-1">
+    <button class="text-xl" @click="toggleEditMode()">
+      <q-item-section style="display: inline-block" class="text-sky-400">
+        <q-icon
+          name="edit"
+          data-te-toggle="tooltip"
+          data-te-placement="bottom"
+          data-te-ripple-init
+          data-te-ripple-color="light"
+          title="Modifier"
+        />
+      </q-item-section>
+    </button>
+  </li>
+  <!-- update btn-->
+  <li
+    v-if="editMode"
+    class="self-center rounded border border-emerald-400 mx-1"
+  >
+    <button class="text-xl" @click="updateLabel()">
+      <q-item-section style="display: inline-block" class="text-emerald-400">
+        <q-icon
+          name="cached"
+          data-te-toggle="tooltip"
+          data-te-placement="bottom"
+          data-te-ripple-init
+          data-te-ripple-color="light"
+          title="Update"
+        />
+      </q-item-section>
+    </button>
+  </li>
+  <!-- delete -->
+  <li class="self-center rounded border border-pink-400 mx-1">
+    <button class="text-xl" @click="remove(currentTask.id)">
+      <q-item-section style="display: inline-block" class="text-pink-400">
+        <q-icon
+          name="delete_outline"
+          data-te-toggle="tooltip"
+          data-te-placement="bottom"
+          data-te-ripple-init
+          data-te-ripple-color="light"
+          title="Supprimer"
+        />
+      </q-item-section>
+    </button>
+  </li>
+</template>
+
+<script>
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "OneTask",
+  emits: ["toggleStatus", "updateLabel", "remove", "toggleEditMode"],
+  props: {
+    task: Object,
+  },
+  data() {
+    return {
+      editMode: false,
+      currentTask: Object,
+    };
+  },
+  methods: {
+    toggleStatus() {
+      this.currentTask.completed = !this.currentTask.completed;
+      this.$emit(
+        "toggleStatus",
+        this.currentTask.id,
+        this.currentTask.completed
+      );
+    },
+    updateLabel(id, title) {
+      this.$emit("updateLabel", this.currentTask.id, this.currentTask.title);
+      this.editMode = false;
+    },
+    remove(id) {
+      this.$emit("remove", id);
+    },
+    returnIconNameFromStatus(completed) {
+      if (completed == false) return "check_box_outline_blank";
+      else return "check_box";
+    },
+    toggleEditMode() {
+      this.$emit("toggleEditMode");
+      this.editMode = !this.editMode;
+    },
+  },
+  mounted() {
+    this.currentTask = this.task;
+  },
+});
+</script>
