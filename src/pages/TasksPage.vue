@@ -89,6 +89,7 @@ import axios from "axios";
 import TaskNew from "components/TaskNew.vue";
 import OneTask from "components/OneTask.vue";
 import TaskFilter from "components/TaskFilter.vue";
+import { STATUS } from "src/constants/constant.js";
 
 export default defineComponent({
   name: "TasksPage",
@@ -97,7 +98,7 @@ export default defineComponent({
       tasks: [],
       statuses: [],
       editMode: false,
-      currentFilter: "ALL",
+      currentFilter: STATUS.CODE_ALL,
       alphabeticalOrderAsc: true,
     };
   },
@@ -105,9 +106,10 @@ export default defineComponent({
   computed: {
     filteredTasks() {
       let tasks = this.sortTaskAlphabetically(this.tasks);
-      if (this.currentFilter == "ALL") return tasks;
-      if (this.currentFilter == "COMP") return tasks.filter((t) => t.completed);
-      if (this.currentFilter == "INPR")
+      if (this.currentFilter == STATUS.CODE_ALL) return tasks;
+      if (this.currentFilter == STATUS.CODE_COMPLETED)
+        return tasks.filter((t) => t.completed);
+      if (this.currentFilter == STATUS.CODE_IN_PROGRESS)
         return tasks.filter((t) => !t.completed);
       return tasks;
     },

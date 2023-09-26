@@ -1,0 +1,5 @@
+export const STATUS = {
+  CODE_ALL: "ALL",
+  CODE_IN_PROGRESS: "INPR",
+  CODE_COMPLETED: "COMP",
+};
