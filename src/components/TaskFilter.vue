@@ -20,6 +20,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { STATUS } from "src/constants/constant.js";
 
 export default defineComponent({
   name: "TaskFilter",
@@ -30,7 +31,7 @@ export default defineComponent({
   computed: {
     list() {
       return [
-        { id: 0, label: "All", code: "ALL" },
+        { id: 0, label: "All", code: STATUS.CODE_ALL },
         ...new Set(this.filtersList),
       ];
     },
