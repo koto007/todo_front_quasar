@@ -1,6 +1,5 @@
 <template>
-  <li class="flex text-xl">
-    <!-- <q-item-section> -->
+  <li class="flex text-2xl">
     <q-icon
       :name="returnIconNameFromStatus(currentTask.completed)"
       type="checkbox"

@@ -213,7 +213,6 @@ export default defineComponent({
       });
     },
   },
-
   mounted() {
     this.loadTasks();
     this.loadStatuses();
