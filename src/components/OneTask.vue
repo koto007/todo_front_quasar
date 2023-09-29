@@ -60,7 +60,7 @@
   </li>
   <!-- delete -->
   <li class="self-center rounded border border-pink-400 mx-1">
-    <button class="text-xl" @click="remove(currentTask.id)">
+    <button class="text-xl" name="delete" @click="remove(currentTask.id)">
       <q-item-section style="display: inline-block" class="text-pink-400">
         <q-icon
           name="delete_outline"

@@ -89,7 +89,7 @@ import axios from "axios";
 import TaskNew from "components/TaskNew.vue";
 import OneTask from "components/OneTask.vue";
 import TaskFilter from "components/TaskFilter.vue";
-import { STATUS } from "src/constants/constant.js";
+import { STATUS, API_URL } from "src/constants/constant.js";
 
 export default defineComponent({
   name: "TasksPage",
@@ -124,7 +124,7 @@ export default defineComponent({
     },
     remove(id) {
       axios
-        .delete("http://127.0.0.1:8000/api/tasks/" + id)
+        .delete(API_URL + id)
         .then((response) => {
           this.loadTasks();
         })
@@ -134,7 +134,7 @@ export default defineComponent({
     },
     add(newTask) {
       axios
-        .post("http://127.0.0.1:8000/api/tasks/", { label: newTask })
+        .post(API_URL, { label: newTask })
         .then(() => {
           this.loadTasks();
         })
@@ -144,7 +144,7 @@ export default defineComponent({
     },
     updateLabel(id, value) {
       axios
-        .patch("http://127.0.0.1:8000/api/tasks/label/" + id, {
+        .patch(API_URL + "label/" + id, {
           key: value,
         })
         .then((response) => {
@@ -156,7 +156,7 @@ export default defineComponent({
     },
     updateStatus(id, value) {
       axios
-        .patch("http://127.0.0.1:8000/api/tasks/status/" + id, {
+        .patch(API_URL + "status/" + id, {
           key: value,
         })
         .then((response) => {
