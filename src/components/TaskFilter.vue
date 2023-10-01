@@ -4,7 +4,8 @@
       ><q-icon name="filter_alt"></q-icon
     ></q-item-section>
   </li>
-  <li v-for="s in list" :key="s.id">
+
+  <li v-for="s in list" :key="s.id" class="each-filter" :class="s.code">
     <button
       class="border border-sky-400 rounded px-2"
       @click="$emit('update:currentFilter', s.code)"

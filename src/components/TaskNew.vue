@@ -1,12 +1,22 @@
 <template>
-  <form class="shadow-sm bg-white mb-5 p-5" @submit.prevent="add()">
-    <div class="text-center">
-      <input
-        type="text"
-        class="shadow appearance-none border border-gray-500 rounded py-1 px-2 mr-1"
-        placeholder="Add new task !"
-        v-model="newTask"
-      />
+  <form class="shadow-sm bg-white mb-5 p-5 text-center" @submit.prevent="add()">
+    <div class="mb-2 flex flex-row items-center justify-center">
+      <div>
+        <input
+          type="text"
+          name="newTask"
+          class="border border-gray-500 rounded py-1 px-2 mr-1"
+          placeholder="Add new task !"
+          v-model="newTask"
+        />
+      </div>
+      <div
+        class="rounded border border-emerald-400 text-emerald-400 h-full py-1 px-2"
+      >
+        <button name="add">
+          <q-icon name="add" />
+        </button>
+      </div>
       <toast-message
         v-if="message != ''"
         :msg="message"

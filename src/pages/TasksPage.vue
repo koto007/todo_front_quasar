@@ -6,9 +6,9 @@
       >
         <h2 class="text-center">
           TODO
-          <q-item-section style="display: inline-block" class="">
+          <span style="display: inline-block" class="">
             <q-icon name="check" />
-          </q-item-section>
+          </span>
         </h2>
         <task-new @add="add"></task-new>
         <div
@@ -26,9 +26,9 @@
         >
           <ul class="flex flex-row gap-2">
             <li>
-              <q-item-section class="text-center text-2xl"
+              <span class="text-center text-2xl"
                 ><q-icon name="import_export"></q-icon
-              ></q-item-section>
+              ></span>
             </li>
             <li>
               <button
@@ -39,9 +39,9 @@
                 }"
                 @click="alphabeticalOrderAsc = true"
               >
-                <q-item-section class="text-center text-xl"
+                <span class="text-center text-xl"
                   ><q-icon name="text_rotation_down"></q-icon
-                ></q-item-section>
+                ></span>
               </button>
             </li>
             <li>
@@ -53,9 +53,9 @@
                 }"
                 @click="alphabeticalOrderAsc = false"
               >
-                <q-item-section class="text-center text-xl"
+                <span class="text-center text-xl"
                   ><q-icon name="text_rotate_up"></q-icon
-                ></q-item-section>
+                ></span>
               </button>
             </li>
           </ul>
