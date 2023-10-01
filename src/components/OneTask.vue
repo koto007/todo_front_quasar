@@ -149,7 +149,9 @@ export default defineComponent({
       this.editMode = !this.editMode;
     },
     className(status) {
-      return status ? STATUS.CODE_COMPLETED : STATUS.CODE_IN_PROGRESS;
+      return status
+        ? "each-task-" + STATUS.CODE_COMPLETED
+        : "each-task-" + STATUS.CODE_IN_PROGRESS;
     },
   },
   computed: {},
