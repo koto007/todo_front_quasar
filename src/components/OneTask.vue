@@ -90,14 +90,21 @@
       </span>
     </button>
   </li>
+  <toast-message
+    v-if="message != ''"
+    :msg="message"
+    :type="'error'"
+  ></toast-message>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { STATUS } from "src/constants/constant";
+import ToastMessage from "./ToastMessage.vue";
 
 export default defineComponent({
   name: "OneTask",
+  components: { ToastMessage },
   emits: ["toggleStatus", "updateLabel", "remove", "toggleEditMode"],
   props: {
     task: Object,
@@ -106,6 +113,7 @@ export default defineComponent({
     return {
       editMode: false,
       currentTask: Object,
+      message: "",
     };
   },
   methods: {
@@ -118,8 +126,16 @@ export default defineComponent({
       );
     },
     updateLabel(id, title) {
-      this.$emit("updateLabel", this.currentTask.id, this.currentTask.title);
-      this.editMode = false;
+      if (this.currentTask.title.trim() != "") {
+        this.$emit("updateLabel", this.currentTask.id, this.currentTask.title);
+        // this.newTask = "";
+        this.editMode = false;
+      } else {
+        this.message = "Task name required";
+        setTimeout(() => {
+          this.message = "";
+        }, 5000);
+      }
     },
     remove(id) {
       this.$emit("remove", id);
