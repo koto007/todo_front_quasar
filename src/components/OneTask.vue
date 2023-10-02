@@ -1,15 +1,11 @@
 <template>
   <li class="flex text-2xl">
-    <q-icon
-      :name="returnIconNameFromStatus(currentTask.completed)"
+    <input
       type="checkbox"
-      v-model="currentTask"
+      v-model="currentTask.completed"
+      :true-value="1"
+      :false-value="0"
       @click="toggleStatus()"
-      data-te-toggle="tooltip"
-      data-te-placement="bottom"
-      data-te-ripple-init
-      data-te-ripple-color="light"
-      title="Filter my todos"
       class="check-box"
     />
   </li>
@@ -118,7 +114,10 @@ export default defineComponent({
   },
   methods: {
     toggleStatus() {
-      this.currentTask.completed = !this.currentTask.completed;
+      // this.currentTask.completed = !this.currentTask.completed;
+      if (this.currentTask.completed == 0) this.currentTask.completed = 1;
+      else if (this.currentTask.completed == 1) this.currentTask.completed = 0;
+
       this.$emit(
         "toggleStatus",
         this.currentTask.id,
@@ -152,6 +151,10 @@ export default defineComponent({
       return status
         ? "each-task-" + STATUS.CODE_COMPLETED
         : "each-task-" + STATUS.CODE_IN_PROGRESS;
+    },
+    test() {
+      if (this.currentTask.completed) return true;
+      else return false;
     },
   },
   computed: {},

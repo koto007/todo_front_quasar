@@ -11,9 +11,7 @@
           </span>
         </h2>
         <task-new @add="add"></task-new>
-        <div
-          class="flex flex-row justify-start w-full text-center space-y-6 content-center flex-col mb-4"
-        >
+        <div class="flex w-full text-center content-center flex-col mb-4">
           <ul class="flex flex-row gap-2">
             <task-filter
               :filters-list="statuses"
@@ -21,9 +19,7 @@
             ></task-filter>
           </ul>
         </div>
-        <div
-          class="flex flex-row justify-start w-full text-center space-y-6 content-center flex-col mb-4"
-        >
+        <div class="flex w-full text-center content-center flex-col mb-4">
           <ul class="flex flex-row gap-2">
             <li>
               <span class="text-center text-2xl"
